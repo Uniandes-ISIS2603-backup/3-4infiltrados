@@ -15,6 +15,7 @@ import co.edu.uniandes.csw.bookstore.persistence.EditorialPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
@@ -22,6 +23,7 @@ import javax.inject.Inject;
  *
  * @author na.tobo
  */
+@Stateless
 public class ClienteLogic {
 
     private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
