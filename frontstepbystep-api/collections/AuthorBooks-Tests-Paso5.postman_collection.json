@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "9a3af22a-c6a6-4261-be6c-c2e1c3795427",
+		"_postman_id": "a253c249-e52c-485a-9308-2a891eb34dad",
 		"name": "AuthorBooks Tests",
 		"description": "Colección de pruebas sobre el recurso AuthorBook",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "a0530002-b587-40d9-a3b1-335810a1a4e6",
 			"name": "Crear una editorial",
 			"event": [
 				{
@@ -55,21 +54,20 @@
 			"response": []
 		},
 		{
-			"_postman_id": "220a6ed8-9a59-4018-b4d0-4e886a5a5b7a",
 			"name": "Crear un libro",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "8391fc71-23d9-4d29-9e3a-8ba1274ccd92",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
 							"console.log(data.id);",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -78,12 +76,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantÃ¡stico con mapas de la geografÃ\\u00ada real y de sus mitologÃ\\u00adas, observando a los hombres lobo que han vivido en la imaginaciÃ³n de Europa y AmÃ©rica.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}},\n                   \"name\": \"Norma\" },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantÃ¡stico con mapas de la geografÃ\\u00ada real y de sus mitologÃ\\u00adas, observando a los hombres lobo que han vivido en la imaginaciÃ³n de Europa y AmÃ©rica.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}},\n                   \"name\": \"Norma\" },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":25000,\n    \"inventario\":8,\n    \"vendidos\":10,\n    \"descuento\":0.4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -103,21 +108,20 @@
 			"response": []
 		},
 		{
-			"_postman_id": "db705506-370f-4394-bf2f-f7661b9aeaa1",
 			"name": "Crear un libro 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "52e7e58a-bd11-4cfd-8da3-7a9e8bbc7c66",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b2\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
 							"console.log(data.id);",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -126,12 +130,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Descripción para el libro 2\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-2\",\n    \"editorial\": { \"id\": {{new_id_e}} ,\n                   \"name\": \"Norma\"},\n    \"name\": \"Historia de los programadores\",\n    \"publishingdate\": \"2003-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Descripción para el libro 2\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-2\",\n    \"editorial\": { \"id\": {{new_id_e}} ,\n                   \"name\": \"Norma\"},\n    \"name\": \"Historia de los programadores\",\n    \"publishingdate\": \"2003-08-20T00:00:00-05:00\",\n    \"costo\":50000,\n    \"inventario\":5,\n    \"vendidos\":3,\n    \"descuento\":0.25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -151,7 +162,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "1076ef18-aa96-4585-b893-1334f345fb50",
 			"name": "Crear un autor",
 			"event": [
 				{
@@ -198,7 +208,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "3617c64d-62c3-418f-bac3-06507a49506b",
 			"name": "Agregar un libro a un autor",
 			"event": [
 				{
@@ -245,7 +254,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a83b629b-9979-4b5d-91cd-b6ba72df3375",
 			"name": "Agregar un libro que no existe a un autor",
 			"event": [
 				{
@@ -288,7 +296,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "7f482e48-dc80-4c71-b647-4bd83ec37308",
 			"name": "Obtener un libro de un autor",
 			"event": [
 				{
@@ -307,10 +314,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/authors/{{new_id_a}}/books/{{new_id_b}}",
 					"protocol": "http",
@@ -332,7 +335,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "b5f2de78-ae79-4a95-8e2d-9249b4ee820e",
 			"name": "Obtener un libro que no existe de un autor",
 			"event": [
 				{
@@ -350,10 +352,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/authors/{{new_id_a}}/books/0",
 					"protocol": "http",
@@ -375,7 +373,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "f5808dd9-66cd-4494-98d9-6d38b398bf86",
 			"name": "Obtener un libro no asociado de un autor",
 			"event": [
 				{
@@ -393,10 +390,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/authors/{{new_id_a}}/books/{{new_id_b2}}",
 					"protocol": "http",
@@ -418,7 +411,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "72041d76-5fcf-411e-a6db-2ee075e569ba",
 			"name": "Asociar libros a un autor",
 			"event": [
 				{
@@ -464,7 +456,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "e1a92bd8-35b2-42ce-931e-48aafd3ef102",
 			"name": "Obtener los libros de un autor",
 			"event": [
 				{
@@ -483,10 +474,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/authors/{{new_id_a}}/books",
 					"protocol": "http",
@@ -507,7 +494,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "f5ca3387-cd8d-4c1b-b2bf-05b0aa35d74e",
 			"name": "Asociar libros que no existen a un autor",
 			"event": [
 				{
@@ -554,7 +540,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "6b72dd14-90dc-4036-a363-edaba63c51e4",
 			"name": "Borrarle un libro a un author",
 			"event": [
 				{
@@ -596,7 +581,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "75e48c40-8f03-4c08-a521-a87b5986f626",
 			"name": "Borrarle un libro 2 a un autor",
 			"event": [
 				{
@@ -638,7 +622,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "3d8f8f22-9f0a-40e9-a355-fef84f9905aa",
 			"name": "Borrarle un libro a un autor que no existe",
 			"event": [
 				{
@@ -681,7 +664,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ff8895fe-1552-40e4-b6dd-0ca18813090d",
 			"name": "Borrar un libro que no existe a un autor",
 			"event": [
 				{
@@ -724,7 +706,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "4d5b6a67-8c6a-48db-80db-7064117ebd43",
 			"name": "Borrar un libro",
 			"event": [
 				{
@@ -764,7 +745,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "615f8813-ce0b-4f9e-aa45-8e6259893be7",
 			"name": "Borrar un libro 2",
 			"event": [
 				{
@@ -804,7 +784,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8ea5dba3-4ee9-41dd-ae40-c7fb0d590fb0",
 			"name": "Borrar un autor",
 			"event": [
 				{
@@ -844,7 +823,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8996bd3b-fe4b-4692-935a-4f56e5c9b577",
 			"name": "Borrar una editorial",
 			"event": [
 				{
@@ -905,5 +883,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "65e1ec79-84bc-47f0-ab8f-e5987f30db56",
+		"_postman_id": "dd1f9673-3afd-4fa7-b309-32f58edab784",
 		"name": "BookEditorial Tests",
 		"description": "Colección de pruebas sobre el recurso BookEditorial",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "64c3db9a-6eba-4fb5-bc50-a54fb5a10fa9",
 			"name": "Crear una editorial",
 			"event": [
 				{
@@ -52,7 +51,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "270eacc6-ee01-416d-bd2d-6dfd3b9667fc",
 			"name": "Crear una editorial 2",
 			"event": [
 				{
@@ -100,19 +98,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "64d4ffe1-b70f-47a3-9cb1-31da86d0b16e",
 			"name": "Crear un libro",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "304084ed-d326-4e9b-b66a-8c2c95b18e0b",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -121,12 +118,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":30000,\n    \"inventario\":10,\n    \"vendidos\":10,\n    \"descuento\":0.4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -146,7 +150,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "72c01c84-8755-4b19-b5fb-e6fb112a6c9d",
 			"name": "Asociar una editorial a un libro",
 			"event": [
 				{
@@ -194,7 +197,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "0a0f7054-e73a-437c-a208-243e07b3ee80",
 			"name": "Asociar una editorial que no existe a un libro",
 			"event": [
 				{
@@ -241,7 +243,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "3d62bd80-ca99-46cd-87b7-8e27c778abe6",
 			"name": "Asociar una editorial a un libro que no existe",
 			"event": [
 				{
@@ -288,7 +289,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "f3f246ee-c9c9-4d86-a17c-fbdc92ee2455",
 			"name": "Borrar un libro",
 			"event": [
 				{
@@ -328,7 +328,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "bbc1d3b5-4923-4f56-9ca1-8e5c820fca07",
 			"name": "Borrar una editorial",
 			"event": [
 				{
@@ -368,7 +367,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "17bd5139-9418-4537-b1cf-49b66269af5e",
 			"name": "Borrar una editorial 2",
 			"event": [
 				{
@@ -429,5 +427,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
