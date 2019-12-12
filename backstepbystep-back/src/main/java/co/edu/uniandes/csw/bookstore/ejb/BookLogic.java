@@ -69,6 +69,9 @@ public class BookLogic {
         if (persistence.findByISBN(bookEntity.getIsbn()) != null) {
             throw new BusinessLogicException("El ISBN ya existe");
         }
+        if(!validateCosto(bookEntity.getCosto())){
+            throw new BusinessLogicException("El costo es invalido");
+        }
         persistence.create(bookEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
         return bookEntity;
@@ -115,6 +118,9 @@ public class BookLogic {
         if (!validateISBN(bookEntity.getIsbn())) {
             throw new BusinessLogicException("El ISBN es inválido");
         }
+        if(!validateCosto(bookEntity.getCosto())){
+            throw new BusinessLogicException("El costo es invalido");
+        }
         BookEntity newEntity = persistence.update(bookEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el libro con id = {0}", bookEntity.getId());
         return newEntity;
@@ -145,4 +151,15 @@ public class BookLogic {
     private boolean validateISBN(String isbn) {
         return !(isbn == null || isbn.isEmpty());
     }
+    
+    /**
+     * Verifica que el costo no sea invalido.
+     *
+     * @param costo a verificar
+     * @return true si el costo es valido.
+     */
+    private boolean validateCosto(Double costo){
+        return !(costo == null || costo<0.0);
+    }
+    
 }
