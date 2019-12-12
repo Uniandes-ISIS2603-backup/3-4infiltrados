@@ -92,11 +92,9 @@ public class ClientePersistenceTest
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         
-        System.out.println("ENTRE JJJ");
         for (int i = 0; i < 3; i++) 
         {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
-            System.out.println("HII:"+entity.getNombre());
             
             em.persist(entity);
             data.add(entity);
@@ -174,7 +172,8 @@ public class ClientePersistenceTest
      * Prueba para actualizar un Cliente.
      */
     @Test
-    public void updateClienteTest() {
+    public void updateClienteTest() 
+    {
         ClienteEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
@@ -185,12 +184,12 @@ public class ClientePersistenceTest
 
         ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getSaldo(), entity.getSaldo());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getCorreoElectronico(), entity.getCorreoElectronico());
-        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
-        Assert.assertEquals(newEntity.getClave(), entity.getClave());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getSaldo(), resp.getSaldo());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getCorreoElectronico(), resp.getCorreoElectronico());
+        Assert.assertEquals(newEntity.getDireccion(), resp.getDireccion());
+        Assert.assertEquals(newEntity.getClave(), resp.getClave());
     }
 
     /**

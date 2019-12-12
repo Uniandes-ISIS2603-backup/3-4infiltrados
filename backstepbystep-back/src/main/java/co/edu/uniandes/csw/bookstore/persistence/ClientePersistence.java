@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.bookstore.entities.ClienteEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,6 +21,7 @@ import javax.persistence.TypedQuery;
  * Manager de javax.persistance con la base de datos SQL.
  * @author na.tobo
  */
+@Stateless
 public class ClientePersistence 
 {
     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
@@ -41,7 +43,7 @@ public class ClientePersistence
     }
 
     /**
-     * Devuelve todos losclientes de la base de datos.
+     * Devuelve todos los clientes de la base de datos.
      *
      * @return una lista con todos los clientes que encuentre en la base de datos,
      * "select u from ClienteEntity u" es como un "select * from ClienteEntity;" -
