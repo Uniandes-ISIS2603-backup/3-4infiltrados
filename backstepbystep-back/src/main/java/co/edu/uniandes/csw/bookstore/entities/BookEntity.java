@@ -58,6 +58,10 @@ public class BookEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReviewEntity> reviews = new ArrayList<ReviewEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "librosComprados", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ClienteEntity> clientes = new ArrayList<ClienteEntity>();
 
     @PodamExclude
     @ManyToMany
@@ -206,4 +210,21 @@ public class BookEntity extends BaseEntity implements Serializable {
     public void setAuthors(List<AuthorEntity> authors) {
         this.authors = authors;
     }
+    /**
+     * Retorna la lista de clientes del libro
+     * @return 
+     */
+    public List<ClienteEntity> getClientes() {
+        return clientes;
+    }
+    /**
+     * Define la lista de clientes de un libro
+     * @param clientes 
+     */
+    public void setClientes(List<ClienteEntity> clientes) {
+        this.clientes = clientes;
+    }
+    
+    
+    
 }
