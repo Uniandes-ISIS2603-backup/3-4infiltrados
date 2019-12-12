@@ -46,6 +46,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *      "description": string,
  *      "publishingdate": date,
  *      "editorial": {@link EditorialDTO}
+ *      "costo": number
  *   }
  * </pre> Por ejemplo una editorial se representa asi:<br>
  *
@@ -58,6 +59,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *      "image: "https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg",
  *      "description": "Jorge Fondebrider traza un mundo fantástico con mapas de la geografía real y de sus mitologías, observando a los hombres lobo que han vivido en la imaginación de Europa y América.",
  *      "publishingdate": "2000-08-20T00:00:00-05:00",
+ *      "costo":13000,
  *      "editorial":
  *      {
  *          "id" : 1,
@@ -78,6 +80,7 @@ public class BookDTO implements Serializable {
     private String description;
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date publishingdate;
+    private Double costo;
 
     /*
     * Relación a una editorial  
@@ -104,6 +107,7 @@ public class BookDTO implements Serializable {
             this.image = bookEntity.getImage();
             this.description = bookEntity.getDescription();
             this.publishingdate = bookEntity.getPublishDate();
+            this.costo = bookEntity.getCosto();
             if (bookEntity.getEditorial() != null) {
                 this.editorial = new EditorialDTO(bookEntity.getEditorial());
             } else {
@@ -125,6 +129,7 @@ public class BookDTO implements Serializable {
         bookEntity.setImage(this.image);
         bookEntity.setDescription(this.description);
         bookEntity.setPublishDate(this.publishingdate);
+        bookEntity.setCosto(this.costo);
         if (this.editorial != null) {
             bookEntity.setEditorial(this.editorial.toEntity());
         }
@@ -260,5 +265,19 @@ public class BookDTO implements Serializable {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the costo
+     */
+    public Double getCosto() {
+        return costo;
+    }
+
+    /**
+     * @param costo the costo to set
+     */
+    public void setCosto(Double costo) {
+        this.costo = costo;
     }
 }

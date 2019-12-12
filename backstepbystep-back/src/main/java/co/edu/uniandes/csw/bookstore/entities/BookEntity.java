@@ -66,6 +66,8 @@ public class BookEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<AuthorEntity> authors = new ArrayList<AuthorEntity>();
+    
+    private Double costo;
 
     /**
      * Devuelve el nombre del libro.
@@ -227,4 +229,18 @@ public class BookEntity extends BaseEntity implements Serializable {
     
     
     
+
+    /**
+     * @return the costo
+     */
+    public Double getCosto() {
+        return costo;
+    }
+
+    /**
+     * @param costo the costo to set
+     */
+    public void setCosto(Double costo) {
+        this.costo = costo;
+    }
 }
