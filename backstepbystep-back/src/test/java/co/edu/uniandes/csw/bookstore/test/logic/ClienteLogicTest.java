@@ -3,9 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.bookstore.test.persistence;
+package co.edu.uniandes.csw.bookstore.test.logic;
 
+import co.edu.uniandes.csw.bookstore.ejb.BookLogic;
+import co.edu.uniandes.csw.bookstore.ejb.ClienteLogic;
+import co.edu.uniandes.csw.bookstore.entities.AuthorEntity;
+import co.edu.uniandes.csw.bookstore.entities.BookEntity;
 import co.edu.uniandes.csw.bookstore.entities.ClienteEntity;
+import co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.bookstore.persistence.ClientePersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,23 +30,28 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * Pruebas de la clase persistence de cliente 
+ * Pruebas de logica de Cliente
+ *
  * @author na.tobo
  */
 @RunWith(Arquillian.class)
-public class ClientePersistenceTest 
+public class ClienteLogicTest 
 {
-   @Inject
-    private  ClientePersistence clientePersistence;
+    private PodamFactory factory = new PodamFactoryImpl();
+
+    @Inject
+    private ClienteLogic clienteLogic;
 
     @PersistenceContext
     private EntityManager em;
 
     @Inject
-    UserTransaction utx;
-
+    private UserTransaction utx;
+        
     private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
-
+    
+    
+    
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
@@ -51,6 +61,7 @@ public class ClientePersistenceTest
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
                 .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -63,7 +74,6 @@ public class ClientePersistenceTest
     public void configTest() {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -80,8 +90,8 @@ public class ClientePersistenceTest
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
-    private void clearData() 
-    {
+    private void clearData() {
+        em.createQuery("delete from BookEntity").executeUpdate();
         em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
@@ -90,30 +100,29 @@ public class ClientePersistenceTest
      * pruebas.
      */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        
-        for (int i = 0; i < 3; i++) 
-        {
+        for (int i = 0; i < 3; i++) {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
-            
             em.persist(entity);
+            entity.setLibrosComprados(new ArrayList<>());
             data.add(entity);
         }
+        ClienteEntity cliente = data.get(2);
+        BookEntity entity = factory.manufacturePojo(BookEntity.class);
+        entity.getClientes().add(cliente);
+        em.persist(entity);
+        cliente.getLibrosComprados().add(entity);
     }
-
-    /**
+     /**
      * Prueba para crear un Cliente.
      */
     @Test
-    public void createClienteTest() {
-        PodamFactory factory = new PodamFactoryImpl();
+    public void createClienteTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = clientePersistence.create(newEntity);
-
+        ClienteEntity result = clienteLogic.createCliente(newEntity);
         Assert.assertNotNull(result);
-
+        
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
-
+        
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getSaldo(), entity.getSaldo());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -127,12 +136,12 @@ public class ClientePersistenceTest
      */
     @Test
     public void getClientesTest() {
-        List<ClienteEntity> list = clientePersistence.findAll();
+        List<ClienteEntity> list = clienteLogic.getClientes();
         Assert.assertEquals(data.size(), list.size());
-        for (ClienteEntity ent : list) {
+        for (ClienteEntity entity : list) {
             boolean found = false;
-            for (ClienteEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+            for (ClienteEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
             }
@@ -146,63 +155,60 @@ public class ClientePersistenceTest
     @Test
     public void getClienteTest() {
         ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = clientePersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        
-       Assert.assertEquals(newEntity.getId(), entity.getId());
-       Assert.assertEquals(newEntity.getSaldo(), entity.getSaldo());
-       Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-       Assert.assertEquals(newEntity.getCorreoElectronico(), entity.getCorreoElectronico());
-       Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
-       Assert.assertEquals(newEntity.getClave(), entity.getClave());
-    }
-
-    /**
-     * Prueba para eliminar un Cliente.
-     */
-    @Test
-    public void deleteClienteTest() {
-        ClienteEntity entity = data.get(0);
-        clientePersistence.delete(entity.getId());
-        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        ClienteEntity resultEntity = clienteLogic.getCliente(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(resultEntity.getId(), entity.getId());
+        Assert.assertEquals(resultEntity.getSaldo(), entity.getSaldo());
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(resultEntity.getCorreoElectronico(), entity.getCorreoElectronico());
+        Assert.assertEquals(resultEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(resultEntity.getClave(), entity.getClave());
     }
 
     /**
      * Prueba para actualizar un Cliente.
      */
     @Test
-    public void updateClienteTest() 
+    public void updateClienteTest() throws BusinessLogicException 
     {
         ClienteEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
 
-        newEntity.setId(entity.getId());
+        pojoEntity.setId(entity.getId());
 
-        clientePersistence.update(newEntity);
+        clienteLogic.updateCliente(pojoEntity.getId(),pojoEntity);
 
         ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getSaldo(), resp.getSaldo());
-        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(newEntity.getCorreoElectronico(), resp.getCorreoElectronico());
-        Assert.assertEquals(newEntity.getDireccion(), resp.getDireccion());
-        Assert.assertEquals(newEntity.getClave(), resp.getClave());
+        Assert.assertEquals( pojoEntity.getId(), resp.getId());
+        Assert.assertEquals( pojoEntity.getSaldo(), resp.getSaldo());
+        Assert.assertEquals( pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals( pojoEntity.getCorreoElectronico(), resp.getCorreoElectronico());
+        Assert.assertEquals( pojoEntity.getDireccion(), resp.getDireccion());
+        Assert.assertEquals( pojoEntity.getClave(), resp.getClave());
     }
 
     /**
-     * Prueba para consultasr un Cliente por Nombre.
+     * Prueba para eliminar un Cliente
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void findClienteByNombreTest() {
+    public void deleteClienteTest() throws BusinessLogicException {
         ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = clientePersistence.findByNombre(entity.getNombre());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        clienteLogic.deleteCliente(entity.getId());
+        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 
-        newEntity = clientePersistence.findByNombre(null);
-        Assert.assertNull(newEntity);
+    /**
+     * Prueba para eliminar un Cliente asociado a un libro
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void deleteClienteConLibroTest() throws BusinessLogicException 
+    {
+        clienteLogic.deleteCliente(data.get(2).getId());
     }
 }
