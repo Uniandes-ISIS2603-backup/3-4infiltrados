@@ -68,6 +68,12 @@ public class BookEntity extends BaseEntity implements Serializable {
     private List<AuthorEntity> authors = new ArrayList<AuthorEntity>();
     
     private Double costo;
+    
+    private Integer inventario;
+    
+    private Integer vendidos;
+    
+    private Double descuento;
 
     /**
      * Devuelve el nombre del libro.
@@ -240,5 +246,47 @@ public class BookEntity extends BaseEntity implements Serializable {
      */
     public void setCosto(Double costo) {
         this.costo = costo;
+    }
+
+    /**
+     * @return the inventario
+     */
+    public Integer getInventario() {
+        return inventario;
+    }
+
+    /**
+     * @param inventario the inventario to set
+     */
+    public void setInventario(Integer inventario) {
+        this.inventario = inventario;
+    }
+
+    /**
+     * @return the vendidos
+     */
+    public Integer getVendidos() {
+        return vendidos;
+    }
+
+    /**
+     * @param vendidos the vendidos to set
+     */
+    public void setVendidos(Integer vendidos) {
+        this.vendidos = vendidos;
+    }
+
+    /**
+     * @return the descuento
+     */
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    /**
+     * @param descuento the descuento to set
+     */
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
     }
 }

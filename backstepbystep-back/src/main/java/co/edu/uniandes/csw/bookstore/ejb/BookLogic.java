@@ -72,6 +72,15 @@ public class BookLogic {
         if(!validateCosto(bookEntity.getCosto())){
             throw new BusinessLogicException("El costo es invalido");
         }
+        if(!validateInventario(bookEntity.getInventario())){
+            throw new BusinessLogicException("El inventario es invalido");
+        }
+        if(!validateVendidos(bookEntity.getVendidos())){
+            throw new BusinessLogicException("El vendidos es invalido");
+        }
+        if(!validateDescuento(bookEntity.getDescuento())){
+            throw new BusinessLogicException("El descuento es invalido");
+        }
         persistence.create(bookEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
         return bookEntity;
@@ -121,6 +130,15 @@ public class BookLogic {
         if(!validateCosto(bookEntity.getCosto())){
             throw new BusinessLogicException("El costo es invalido");
         }
+        if(!validateInventario(bookEntity.getInventario())){
+            throw new BusinessLogicException("El inventario es invalido");
+        }
+        if(!validateVendidos(bookEntity.getVendidos())){
+            throw new BusinessLogicException("El vendidos es invalido");
+        }
+        if(!validateDescuento(bookEntity.getDescuento())){
+            throw new BusinessLogicException("El descuento es invalido");
+        }
         BookEntity newEntity = persistence.update(bookEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el libro con id = {0}", bookEntity.getId());
         return newEntity;
@@ -160,6 +178,39 @@ public class BookLogic {
      */
     private boolean validateCosto(Double costo){
         return !(costo == null || costo<0.0);
+    }
+    
+    
+    /**
+     * Verifica que el inventario no sea invalido.
+     *
+     * @param inventario a verificar
+     * @return true si el inventario es valido.
+     */
+    private boolean validateInventario(Integer inventario){
+        return !(inventario == null || inventario<0);
+    }
+    
+    
+    /**
+     * Verifica que los vendidos no sea invalido.
+     *
+     * @param vendidos a verificar
+     * @return true si el numero de vendidos es valido.
+     */
+    private boolean validateVendidos(Integer vendidos){
+        return !(vendidos == null || vendidos<0);
+    }
+    
+    
+    /**
+     * Verifica que el descuento no sea invalido.
+     *
+     * @param descuento a verificar
+     * @return true si el descuento es valido.
+     */
+    private boolean validateDescuento(Double descuento){
+        return !(descuento == null || descuento < 0.0 || descuento >= 1.0) ;
     }
     
 }

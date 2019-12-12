@@ -135,6 +135,9 @@ public class BookPersistenceTest {
         Assert.assertEquals(newEntity.getIsbn(), entity.getIsbn());
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
         Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
+        Assert.assertEquals(newEntity.getInventario(), entity.getInventario());
+        Assert.assertEquals(newEntity.getVendidos(), entity.getVendidos());
+        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
     }
 
     /**
@@ -201,6 +204,9 @@ public class BookPersistenceTest {
         Assert.assertEquals(newEntity.getIsbn(), resp.getIsbn());
         Assert.assertEquals(newEntity.getImage(), resp.getImage());
         Assert.assertEquals(newEntity.getCosto(), resp.getCosto());
+        Assert.assertEquals(newEntity.getInventario(), entity.getInventario());
+        Assert.assertEquals(newEntity.getVendidos(), entity.getVendidos());
+        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
     }
 
     /**
