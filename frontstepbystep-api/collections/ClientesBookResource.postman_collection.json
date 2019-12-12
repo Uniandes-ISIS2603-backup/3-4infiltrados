@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "5a10d0bf-83e3-4687-9bf2-50c7023899bd",
+		"name": "ClientesBookResource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear cliente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f58880c3-a2d2-494a-befe-9cd59b87f26f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b759ec0-6ad0-4e91-936f-5e27ed401232",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cl\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"saldo\":0,\n\t\"nombre\":\"Usuario 1 Postman\",\n\t\"clave\":\"1234\",\n\t\"direccion\":\"Calle 100 #100-100\",\n\t\"correoElectronico\":\"usuario1postman@hotmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Bla"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una editorial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Norma\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"editorials"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nCrea una nueva editorial. El recurso solo tiene de atributo \"name\" que debe ser único. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eae45c79-bbba-48ec-8aab-fca8e056e290",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 50000,\n    \"inventario\":5,\n    \"vendidos\":10,\n    \"descuento\":0.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books"
+					]
+				},
+				"description": "Bla"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear libro 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eae45c79-bbba-48ec-8aab-fca8e056e290",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-81\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 3\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 45000,\n    \"inventario\":5,\n    \"vendidos\":10,\n    \"descuento\":0.25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books"
+					]
+				},
+				"description": "Bla"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una relacion entre cliente y libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc5de021-54fa-4fe2-b373-8d3f265d0027",
+						"exec": [
+							"tests[\"no genera error en el post\"] = responseCode.code ===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/clientes/{{new_id_cl}}/books/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"clientes",
+						"{{new_id_cl}}",
+						"books",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dar relacion ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/clientes/{{new_id_cl}}/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"clientes",
+						"{{new_id_cl}}",
+						"books"
+					]
+				},
+				"description": "AAAAa"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualzar relacion ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10b51cc4-2493-4d21-a2e8-2a545e5f185e",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"costo\": 50000.0,\r\n        \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\r\n        \"descuento\": 0.0,\r\n        \"editorial\": {\r\n            \"id\": 1,\r\n            \"name\": \"Norma\"\r\n        },\r\n        \"id\": 1,\r\n        \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\r\n        \"inventario\": 5,\r\n        \"isbn\": \"234234123449-8\",\r\n        \"name\": \"Historia de los hombres lobo 23\",\r\n        \"publishingdate\": \"2000-08-19T05:00:00Z[UTC]\",\r\n        \"vendidos\": 10,\r\n        \"authors\": [],\r\n        \"reviews\": []\r\n    },\r\n    {\r\n        \"costo\": 45000.0,\r\n        \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\r\n        \"descuento\": 0.25,\r\n        \"editorial\": {\r\n            \"id\": 1,\r\n            \"name\": \"Norma\"\r\n        },\r\n        \"id\": 2,\r\n        \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\r\n        \"inventario\": 5,\r\n        \"isbn\": \"234440149-81\",\r\n        \"name\": \"Historia de los hombres lobo 46\",\r\n        \"publishingdate\": \"2000-08-19T05:00:00Z[UTC]\",\r\n        \"vendidos\": 10,\r\n        \"authors\": [],\r\n        \"reviews\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/clientes/{{new_id_cl}}/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"clientes",
+						"{{new_id_cl}}",
+						"books"
+					]
+				},
+				"description": "aa"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar relacion ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0349e3a2-9c72-4985-ba95-ee7d27015c65",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/clientes/{{new_id_cl}}/books/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"clientes",
+						"{{new_id_cl}}",
+						"books",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

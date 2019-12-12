@@ -63,7 +63,6 @@ public class ClienteLogic {
         if (clienteEntity.getId() != null) {
             throw new BusinessLogicException("El id del cliente ya esta registrado.");
         }
-
         persistence.create(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
         return clienteEntity;

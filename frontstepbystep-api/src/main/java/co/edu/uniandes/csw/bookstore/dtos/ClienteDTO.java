@@ -63,7 +63,6 @@ public class ClienteDTO implements Serializable
             this.nombre=clienteEntity.getNombre();
             this.direccion=clienteEntity.getDireccion();
             this.saldo=clienteEntity.getSaldo();
-
         }
     }
 
