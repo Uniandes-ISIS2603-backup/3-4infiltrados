@@ -1,24 +1,24 @@
 {
 	"info": {
-		"_postman_id": "c8947e97-d325-4a0c-9049-31dd272e25ff",
+		"_postman_id": "a6155b7b-84c9-41e2-b508-ae1289192f18",
 		"name": "Book Tests",
 		"description": "Colección de pruebas sobre el recurso Book",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "3957bd00-dcbd-411b-befa-e05f142a99f5",
 			"name": "Crear una editorial",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
+						"id": "e449fb76-8b8d-4352-822d-e6d246f475cc",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_e\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -27,12 +27,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\":\"Norma\"}"
+					"raw": "{\"name\":\"Norma\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials",
@@ -52,18 +59,17 @@
 			"response": []
 		},
 		{
-			"_postman_id": "4ce87dd2-c01d-444b-8291-f424a357241c",
 			"name": "Crear un libro con ISBN invalido 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "d80427e6-5008-41d2-88de-479a8d9c5f51",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No crea con ISBN invalido\"] = responseCode.code === 412;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El ISBN es inválido\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -72,12 +78,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"editorial\": { \n    \t\"id\": {{new_id_e}} \n    \t},\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -97,18 +110,17 @@
 			"response": []
 		},
 		{
-			"_postman_id": "67494add-6036-40dd-9d66-65d4795d981d",
 			"name": "Crear un libro con ISBN invalido 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "d80427e6-5008-41d2-88de-479a8d9c5f51",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No crea con ISBN invalido\"] = responseCode.code === 412;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El ISBN es inválido\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -117,12 +129,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -142,19 +161,17 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2ada7754-88d7-4d99-aa37-94f45cd3f25e",
-			"name": "Crear un libro",
+			"name": "Crear un libro con costo invalido 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "304084ed-d326-4e9b-b66a-8c2c95b18e0b",
-						"type": "text/javascript",
+						"id": "d80427e6-5008-41d2-88de-479a8d9c5f51",
 						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_b\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+							"tests[\"No crea con costo invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El costo es invalido\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -163,12 +180,122 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930430159-1\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": -50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nCrea un nuevo libro pero con un costo invalido. Verifica que se genera el error y el mensaje \"El costo es inválido\".\r\n\r\n**Código HTTP esperado: 412 Precondition failed\".**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un libro con costo invalido 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d80427e6-5008-41d2-88de-479a8d9c5f51",
+						"exec": [
+							"tests[\"No crea con costo invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El costo es invalido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
 						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"950350149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nCrea un nuevo libro pero con un costo invalido. Verifica que se genera el error y el mensaje \"El costo es inválido\".\r\n\r\n**Código HTTP esperado: 412 Precondition failed\".**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "304084ed-d326-4e9b-b66a-8c2c95b18e0b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -188,19 +315,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "80c2843b-36b3-4e91-9453-08081acda2c6",
 			"name": "Crear un libro 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "ceefa0d0-e6b0-4457-bf73-209c199fd164",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b2\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -209,12 +335,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-81\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 3\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-81\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 3\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": 45000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -234,7 +367,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "0ed96c42-daec-4bd0-87d1-95cce35705a4",
 			"name": "Crear un libro con el mismo ISBN",
 			"event": [
 				{
@@ -279,7 +411,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8352de52-292d-4ec2-9588-65c91b45166f",
 			"name": "Crear un libro con editorial que no existe",
 			"event": [
 				{
@@ -324,7 +455,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ce2ca10e-51d6-4d5a-86e9-7fec8184cdb5",
 			"name": "Obtener todos los libros",
 			"event": [
 				{
@@ -343,10 +473,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
 					"protocol": "http",
@@ -365,7 +491,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "3eb0c0d0-9cf3-4419-8968-4bcf3268cb5e",
 			"name": "Obtener un libro",
 			"event": [
 				{
@@ -384,10 +509,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}",
 					"protocol": "http",
@@ -407,7 +528,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "44c3ac64-7543-4b47-a786-ecf7a0cea186",
 			"name": "Obtener un libro que no existe",
 			"event": [
 				{
@@ -425,10 +545,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/0",
 					"protocol": "http",
@@ -448,7 +564,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "17f9e1fe-af2b-447a-a7a4-de56dac390c8",
 			"name": "Editar un libro que no existe",
 			"event": [
 				{
@@ -494,7 +609,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "1507a59c-481e-41f9-8b56-c3a6530c336f",
 			"name": "Editar un libro con ISBN invalido",
 			"event": [
 				{
@@ -540,19 +654,17 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8eccc708-b632-43aa-839f-b47b93a047a2",
-			"name": "Editar un libro",
+			"name": "Editar un libro con costo invalido 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "1077a573-437a-4a11-9b9a-87cb45264001",
-						"type": "text/javascript",
+						"id": "2faffc82-5165-472c-8ea8-5e9bfc03100c",
 						"exec": [
-							"console.log(responseBody);",
-							"var data = JSON.parse(responseBody);",
-							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						]
+							"tests[\"No crea con ISBN invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El costo es invalido\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -561,12 +673,124 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Se ha editado la Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\": -50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books",
+						"{{new_id_b}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\nActualiza un libro con costo invalido. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El costo es inválido.\".\r\n\r\n**Código HTTP esperado: 412**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un libro con costo invalido 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2faffc82-5165-472c-8ea8-5e9bfc03100c",
+						"exec": [
+							"tests[\"No crea con ISBN invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El costo es invalido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
 						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Se ha editado la Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Se ha editado la Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"frontstepbystep-api",
+						"api",
+						"books",
+						"{{new_id_b}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\nActualiza un libro con costo invalido. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El costo es inválido.\".\r\n\r\n**Código HTTP esperado: 412**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1077a573-437a-4a11-9b9a-87cb45264001",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Se ha editado la Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}",
@@ -587,7 +811,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2c066a6c-f94a-473a-aef7-09b9e784035a",
 			"name": "Borrar un libro",
 			"event": [
 				{
@@ -627,7 +850,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c15a1d4d-beae-4b61-8b8a-0ad835b98da4",
 			"name": "Borrar un libro 2",
 			"event": [
 				{
@@ -667,7 +889,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "1c77ce4f-e943-4c3f-b1cc-faa07dffc163",
 			"name": "Borrar un libro que no existe",
 			"event": [
 				{
@@ -708,7 +929,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "94335a6a-d843-4ffd-8d7a-230f6881a8dc",
 			"name": "Borrar una editorial",
 			"event": [
 				{
@@ -769,5 +989,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
