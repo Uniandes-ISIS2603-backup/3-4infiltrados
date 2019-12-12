@@ -154,6 +154,9 @@ public class BookLogicTest {
         Assert.assertEquals(newEntity.getIsbn(), entity.getIsbn());
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
         Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
+        Assert.assertEquals(newEntity.getInventario(), entity.getInventario());
+        Assert.assertEquals(newEntity.getVendidos(), entity.getVendidos());
+        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
     }
 
     /**
@@ -203,6 +206,91 @@ public class BookLogicTest {
     public void createBookTestConCostoInvalido2() throws BusinessLogicException {
         BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
         newEntity.setCosto(Double.NEGATIVE_INFINITY);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con inventario inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConInventarioInvalido() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setInventario(null);
+        bookLogic.createBook(newEntity);
+    }
+    
+        /**
+     * Prueba para crear un Book con inventario inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConInventarioInvalido2() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setInventario(Integer.MIN_VALUE);
+        bookLogic.createBook(newEntity);
+    }
+    
+    
+        /**
+     * Prueba para crear un Book con vendidos inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConVendidosInvalido() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setVendidos(null);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con vendidos inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConVendidosInvalido2() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setVendidos(Integer.MIN_VALUE);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con descuento inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConDescuentoInvalido() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setDescuento(null);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con descuento inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConDescuentoInvalido2() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setDescuento(Double.MIN_VALUE);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con descuento inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConDescuentoInvalido3() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setDescuento(1.0);
         bookLogic.createBook(newEntity);
     }
 
@@ -296,6 +384,10 @@ public class BookLogicTest {
         Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
         Assert.assertEquals(pojoEntity.getIsbn(), resp.getIsbn());
         Assert.assertEquals(pojoEntity.getImage(), resp.getImage());
+        Assert.assertEquals(pojoEntity.getCosto(), resp.getCosto());
+        Assert.assertEquals(pojoEntity.getInventario(), resp.getInventario());
+        Assert.assertEquals(pojoEntity.getVendidos(), resp.getVendidos());
+        Assert.assertEquals(pojoEntity.getDescuento(), resp.getDescuento());
     }
 
     /**
@@ -350,6 +442,105 @@ public class BookLogicTest {
         BookEntity entity = data.get(0);
         BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
         pojoEntity.setIsbn(null);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con inventario inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConInventarioInvalidoTest() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setInventario(null);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con costo inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConInventarioInvalidoTest2() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setInventario(Integer.MIN_VALUE);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    
+    /**
+     * Prueba para actualizar un Book con vendidos inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConVendidosInvalidoTest() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setVendidos(null);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con vendidos inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConVendidosInvalidoTest2() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setVendidos(Integer.MIN_VALUE);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con descuento inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConDescuentoInvalidoTest() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setDescuento(null);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con descuento inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConDescuetnoInvalidoTest2() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setDescuento(Double.NEGATIVE_INFINITY);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con descuento inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConDescuetnoInvalidoTest3() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setDescuento(1.0);
         pojoEntity.setId(entity.getId());
         bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
     }

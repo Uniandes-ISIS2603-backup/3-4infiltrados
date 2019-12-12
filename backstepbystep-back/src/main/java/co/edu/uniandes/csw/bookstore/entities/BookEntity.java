@@ -34,7 +34,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamDoubleValue;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  * Clase que representa un libro en la persistencia y permite su serialización
@@ -67,7 +69,17 @@ public class BookEntity extends BaseEntity implements Serializable {
     @ManyToMany
     private List<AuthorEntity> authors = new ArrayList<AuthorEntity>();
     
+    @PodamDoubleValue(minValue = 0)
     private Double costo;
+    
+    @PodamIntValue(minValue = 0)
+    private Integer inventario;
+    
+    @PodamIntValue(minValue = 0)
+    private Integer vendidos;
+    
+    @PodamDoubleValue(minValue = 0, maxValue=.99999999999999)
+    private Double descuento;
 
     /**
      * Devuelve el nombre del libro.
@@ -240,5 +252,47 @@ public class BookEntity extends BaseEntity implements Serializable {
      */
     public void setCosto(Double costo) {
         this.costo = costo;
+    }
+
+    /**
+     * @return the inventario
+     */
+    public Integer getInventario() {
+        return inventario;
+    }
+
+    /**
+     * @param inventario the inventario to set
+     */
+    public void setInventario(Integer inventario) {
+        this.inventario = inventario;
+    }
+
+    /**
+     * @return the vendidos
+     */
+    public Integer getVendidos() {
+        return vendidos;
+    }
+
+    /**
+     * @param vendidos the vendidos to set
+     */
+    public void setVendidos(Integer vendidos) {
+        this.vendidos = vendidos;
+    }
+
+    /**
+     * @return the descuento
+     */
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    /**
+     * @param descuento the descuento to set
+     */
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
     }
 }

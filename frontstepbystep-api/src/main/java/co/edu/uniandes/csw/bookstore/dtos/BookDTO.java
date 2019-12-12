@@ -81,6 +81,9 @@ public class BookDTO implements Serializable {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date publishingdate;
     private Double costo;
+    private Integer inventario;
+    private Integer vendidos;
+    private Double descuento;
 
     /*
     * Relación a una editorial  
@@ -108,6 +111,9 @@ public class BookDTO implements Serializable {
             this.description = bookEntity.getDescription();
             this.publishingdate = bookEntity.getPublishDate();
             this.costo = bookEntity.getCosto();
+            this.inventario = bookEntity.getInventario();
+            this.vendidos = bookEntity.getVendidos();
+            this.descuento = bookEntity.getDescuento();
             if (bookEntity.getEditorial() != null) {
                 this.editorial = new EditorialDTO(bookEntity.getEditorial());
             } else {
@@ -130,6 +136,9 @@ public class BookDTO implements Serializable {
         bookEntity.setDescription(this.description);
         bookEntity.setPublishDate(this.publishingdate);
         bookEntity.setCosto(this.costo);
+        bookEntity.setInventario(this.inventario);
+        bookEntity.setVendidos(this.vendidos);
+        bookEntity.setDescuento(this.descuento);
         if (this.editorial != null) {
             bookEntity.setEditorial(this.editorial.toEntity());
         }
@@ -279,5 +288,47 @@ public class BookDTO implements Serializable {
      */
     public void setCosto(Double costo) {
         this.costo = costo;
+    }
+
+    /**
+     * @return the inventario
+     */
+    public Integer getInventario() {
+        return inventario;
+    }
+
+    /**
+     * @param inventario the inventario to set
+     */
+    public void setInventario(Integer inventario) {
+        this.inventario = inventario;
+    }
+
+    /**
+     * @return the vendidos
+     */
+    public Integer getVendidos() {
+        return vendidos;
+    }
+
+    /**
+     * @param vendidos the vendidos to set
+     */
+    public void setVendidos(Integer vendidos) {
+        this.vendidos = vendidos;
+    }
+
+    /**
+     * @return the descuento
+     */
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    /**
+     * @param descuento the descuento to set
+     */
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
     }
 }
