@@ -153,6 +153,7 @@ public class BookLogicTest {
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
         Assert.assertEquals(newEntity.getIsbn(), entity.getIsbn());
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
+        Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
     }
 
     /**
@@ -178,6 +179,30 @@ public class BookLogicTest {
         BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
         newEntity.setEditorial(editorialData.get(0));
         newEntity.setIsbn(null);
+        bookLogic.createBook(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Book con costo inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConCostoInvalido() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setCosto(null);
+        bookLogic.createBook(newEntity);
+    }
+    
+        /**
+     * Prueba para crear un Book con costo inválido
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBookTestConCostoInvalido2() throws BusinessLogicException {
+        BookEntity newEntity = factory.manufacturePojo(BookEntity.class);
+        newEntity.setCosto(Double.NEGATIVE_INFINITY);
         bookLogic.createBook(newEntity);
     }
 
@@ -251,6 +276,7 @@ public class BookLogicTest {
         Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
         Assert.assertEquals(entity.getIsbn(), resultEntity.getIsbn());
         Assert.assertEquals(entity.getImage(), resultEntity.getImage());
+        Assert.assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
 
     /**
@@ -282,6 +308,34 @@ public class BookLogicTest {
         BookEntity entity = data.get(0);
         BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
         pojoEntity.setIsbn("");
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Book con costo inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConCostoInvalidoTest() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setCosto(null);
+        pojoEntity.setId(entity.getId());
+        bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
+    }
+    
+        /**
+     * Prueba para actualizar un Book con costo inválido.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateBookConCostoInvalidoTest2() throws BusinessLogicException {
+        BookEntity entity = data.get(0);
+        BookEntity pojoEntity = factory.manufacturePojo(BookEntity.class);
+        pojoEntity.setCosto(Double.NEGATIVE_INFINITY);
         pojoEntity.setId(entity.getId());
         bookLogic.updateBook(pojoEntity.getId(), pojoEntity);
     }
