@@ -60,7 +60,7 @@ public class ClienteLogic {
         if (persistence.findByNombre(clienteEntity.getNombre()) != null) {
             throw new BusinessLogicException("El nombre del cliente ya esta registrado.");
         }
-        if (persistence.find(clienteEntity.getId()) != null) {
+        if (clienteEntity.getId() != null) {
             throw new BusinessLogicException("El id del cliente ya esta registrado.");
         }
 
