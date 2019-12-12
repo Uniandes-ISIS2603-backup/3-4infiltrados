@@ -82,6 +82,26 @@ public class ClienteResource {
         LOGGER.info("ClienteResource deleteCliente: output: void");
     }
     
+    /**
+     * Conexión con el servicio de libros para un cliente.
+     * {@link ClienteBooksResource}
+     *
+     * Este método conecta la ruta de /clientes con las rutas de /books que
+     * dependen del cliente, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de los libros.
+     *
+     * @param clientesId El ID del cliente con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Libros para ese cliente en paricular.
+     */
+    @Path("{clientesId: \\d+}/books")
+    public Class<ClienteBooksResource> getClienteBooksResource(@PathParam("clientesId") Long clientesId) {
+        if (clienteLogic.getCliente(clientesId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
+        }
+        return ClienteBooksResource.class;
+    }
+    
     
     private List<ClienteDetailDTO> listEntity2DTO(List<ClienteEntity> entityList) {
         List<ClienteDetailDTO> list = new ArrayList<>();
