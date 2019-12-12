@@ -60,7 +60,7 @@ public class BookEntity extends BaseEntity implements Serializable {
     private List<ReviewEntity> reviews = new ArrayList<ReviewEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "librosComprados", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @ManyToMany
     private List<ClienteEntity> clientes = new ArrayList<ClienteEntity>();
 
     @PodamExclude

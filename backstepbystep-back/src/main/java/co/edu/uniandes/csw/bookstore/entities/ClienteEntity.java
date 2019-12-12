@@ -7,16 +7,17 @@ package co.edu.uniandes.csw.bookstore.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *Clase que representa a un cliente de la libreria
- * 
+ * Clase que representa a un cliente de la libreria
  * @author na.tobo
  */
+@Entity
 public class ClienteEntity extends BaseEntity
 {
     /**
