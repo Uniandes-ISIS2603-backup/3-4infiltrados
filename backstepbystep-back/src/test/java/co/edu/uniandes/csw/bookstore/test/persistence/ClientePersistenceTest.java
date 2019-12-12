@@ -25,7 +25,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *Pruebas de la persis
+ * Pruebas de la persistence 
  * @author na.tobo
  */
 @RunWith(Arquillian.class)
@@ -91,6 +91,8 @@ public class ClientePersistenceTest
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        
+        System.out.println("ENTRE JJJ");
         for (int i = 0; i < 3; i++) 
         {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
