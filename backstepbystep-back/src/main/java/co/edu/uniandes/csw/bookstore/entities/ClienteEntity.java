@@ -13,8 +13,7 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *Clase que representa a un cliente de la libreria
- * 
+ * Clase que representa a un cliente de la libreria
  * @author na.tobo
  */
 public class ClienteEntity extends BaseEntity
