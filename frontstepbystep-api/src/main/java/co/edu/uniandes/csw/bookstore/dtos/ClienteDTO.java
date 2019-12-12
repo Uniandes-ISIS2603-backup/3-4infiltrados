@@ -80,7 +80,7 @@ public class ClienteDTO
         clienteEntity.setClave(this.clave);
         clienteEntity.setDireccion(this.direccion);
         clienteEntity.setSaldo(this.saldo);
-        clienteEntity.setDireccion(this.correoElectronico);
+        clienteEntity.setCorreoElectronico(this.correoElectronico);
         return clienteEntity;
     }
     public Long getId() {
