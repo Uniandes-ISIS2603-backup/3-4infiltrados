@@ -227,8 +227,6 @@ public class BookEntity extends BaseEntity implements Serializable {
         this.clientes = clientes;
     }
     
-    
-    
 
     /**
      * @return the costo
