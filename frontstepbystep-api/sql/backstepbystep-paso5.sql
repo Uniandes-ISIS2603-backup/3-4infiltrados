@@ -1,5 +1,6 @@
 delete from ReviewEntity;
 delete from BookEntity_AuthorEntity;
+delete from BookEntity_ClienteEntity;
 delete from AuthorEntity;
 delete from BookEntity;
 delete from EditorialEntity;
@@ -8,12 +9,12 @@ delete from ClienteEntity;
 insert into EditorialEntity (id, name) values (100,'Oveja Negra');
 insert into EditorialEntity (id, name) values (200,'Siruela');
 
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (100, 'The Lord of the Rings', '930330149-8', 'https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg', 'Supplement R Tympanic Membrane with Synth Sub, Via Opening', '8/20/1996',100);
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (200, 'Harry Potter and the Sorcerer´s Stone', '507119915-7', 'http://m.cdn.blog.hu/ko/kockagyar/image/harry_potter_poster/harry_potter_1.jpg', 'Occlusion of Right Femoral Artery, Percutaneous Approach', '2/19/2014',100);
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (300, 'A Game of Thrones', '279453624-9', 'https://cdn.waterstones.com/bookjackets/large/9780/0075/9780007548231.jpg', 'Removal of Spacer from T-lum Jt, Perc Approach', '4/7/1998',100);
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (400, 'The Winds of Winter', '744706866-7', 'http://www.darkmediaonline.com/wp-content/uploads/2013/01/WindsofWinter.jpg', 'Reposition Left Femoral Shaft, Perc Endo Approach', '10/10/1998',200);
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (500, 'The Slow Regard of Silent Things', '260760424-9', 'http://www.patrickrothfuss.com/images/page/cover-slow-regard_277.jpg', 'Supplement Lower Artery with Autol Sub, Perc Approach', '5/9/2013',200);
-insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id) values (600, 'Harry Potter and the Philosopher´s Stone', '260760424-9', 'https://katemacdonalddotnet.files.wordpress.com/2015/11/potter-1-4.jpg', 'disse accumsan tortor quis turp Perc Approach', '5/9/2013',200);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (100, 'The Lord of the Rings', '930330149-8', 'https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg', 'Supplement R Tympanic Membrane with Synth Sub, Via Opening', '8/20/1996',100, 50000, 10, 10, 0.3);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (200, 'Harry Potter and the Sorcerer´s Stone', '507119915-7', 'http://m.cdn.blog.hu/ko/kockagyar/image/harry_potter_poster/harry_potter_1.jpg', 'Occlusion of Right Femoral Artery, Percutaneous Approach', '2/19/2014',100, 30000, 8, 7, 0.15);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (300, 'A Game of Thrones', '279453624-9', 'https://cdn.waterstones.com/bookjackets/large/9780/0075/9780007548231.jpg', 'Removal of Spacer from T-lum Jt, Perc Approach', '4/7/1998',100, 78000, 40, 3, 0.1);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (400, 'The Winds of Winter', '744706866-7', 'http://www.darkmediaonline.com/wp-content/uploads/2013/01/WindsofWinter.jpg', 'Reposition Left Femoral Shaft, Perc Endo Approach', '10/10/1998',200, 10000, 80, 59, 0.4);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (500, 'The Slow Regard of Silent Things', '260760424-9', 'http://www.patrickrothfuss.com/images/page/cover-slow-regard_277.jpg', 'Supplement Lower Artery with Autol Sub, Perc Approach', '5/9/2013',200, 60000, 15, 25, 0.5);
+insert into BookEntity (id, name, isbn, image, description, publishDate, editorial_id, costo, inventario, vendidos, descuento) values (600, 'Harry Potter and the Philosopher´s Stone', '260760424-9', 'https://katemacdonalddotnet.files.wordpress.com/2015/11/potter-1-4.jpg', 'disse accumsan tortor quis turp Perc Approach', '5/9/2013',200, 50000, 10, 10, 0.3);
 
 insert into AuthorEntity (id, name,  image, birthDate, description) values (100,'J.K. Rowling', 'http://cdn1us.denofgeek.com/sites/denofgeekus/files/2016/11/rowling.jpg', '4/7/1965','Joanne  Rowling, OBE, FRSL, pen names J. K. Rowling and Robert Galbraith, is a British novelist, screenwriter and film producer best known as the author of the Harry Potter fantasy series.');
 insert into AuthorEntity (id, name,  image, birthDate, description) values (200, 'J. R. R. Tolkien', 'http://www.biografiasyvidas.com/biografia/t/fotos/tolkien.jpg', '01/03/1892','Joanne  Rowling, OBE, FRSL, pen names J. K. Rowling and Robert Galbraith, is a British novelist, screenwriter and film producer best known as the author of the Harry Potter fantasy series.');
@@ -31,3 +32,17 @@ insert into ReviewEntity  (id, name,  description, source, book_id) values (100,
 insert into ReviewEntity  (id, name,  description, source, book_id) values (200, ' ','The trilogy is worth reading once. For readers who like fast paced action , this is not a series I would recommend. It progresses quite slowly and the descriptions are lengthy - not really my type. But if you have the patience, the plot is worth it.', ' ', 100);
 insert into ReviewEntity  (id, name,  description, source, book_id) values (300,' ','This isnt really like other books, even its imitators, though the best of them are similarly long, variable in pace and diverse in language and location. The early part of the story was meant to be a follow-up to The Hobbit, u ',' ', 200);
 insert into ReviewEntity  (id, name,  description, source, book_id) values (400,' ', 'The trilogy is worth reading once. For readers who like fast paced action , this is not a series I would recommend. It progresses quite slowly and the descriptions are lengthy - not really my type. But if you have the patience, the plot is worth it.',' ', 300);
+
+insert into ClienteEntity (id, clave, correoelectronico, direccion, nombre, saldo ) values (100, '1234', 'usuario1@hotmail.com', 'Calle 1 #1-1', 'Usuario 1', 200000);
+insert into ClienteEntity (id, clave, correoelectronico, direccion, nombre, saldo ) values (200, '1234', 'usuario2@hotmail.com', 'Calle 2 #2-2', 'Usuario 2', 200000);
+insert into ClienteEntity (id, clave, correoelectronico, direccion, nombre, saldo ) values (300, '1234', 'usuario3@hotmail.com', 'Calle 3 #3-3', 'Usuario 3', 200000);
+insert into ClienteEntity (id, clave, correoelectronico, direccion, nombre, saldo ) values (400, '1234', 'usuario4@hotmail.com', 'Calle 4 #4-4', 'Usuario 4', 200000);
+
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (100, 100);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (100, 300);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (200, 400);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (200, 600);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (300, 500);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (300, 300);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (400, 200);
+insert into BookEntity_ClienteEntity (clientes_id, libroscomprados_id) values (400, 500);
