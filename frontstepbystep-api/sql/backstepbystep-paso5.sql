@@ -3,6 +3,7 @@ delete from BookEntity_AuthorEntity;
 delete from AuthorEntity;
 delete from BookEntity;
 delete from EditorialEntity;
+delete from ClienteEntity;
 
 insert into EditorialEntity (id, name) values (100,'Oveja Negra');
 insert into EditorialEntity (id, name) values (200,'Siruela');
