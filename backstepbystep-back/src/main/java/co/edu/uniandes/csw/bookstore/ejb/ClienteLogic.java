@@ -60,9 +60,6 @@ public class ClienteLogic {
         if (persistence.findByNombre(clienteEntity.getNombre()) != null) {
             throw new BusinessLogicException("El nombre del cliente ya esta registrado.");
         }
-        if (clienteEntity.getId() != null) {
-            throw new BusinessLogicException("El id del cliente ya esta registrado.");
-        }
         persistence.create(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
         return clienteEntity;
@@ -108,9 +105,6 @@ public class ClienteLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clientesId);
       if (!validateSaldo(clienteEntity.getSaldo())) {
             throw new BusinessLogicException("El Saldo es inválido");
-        }
-        if (persistence.findByNombre(clienteEntity.getNombre()) != null) {
-            throw new BusinessLogicException("El nombre del cliente ya esta registrado.");
         }
         if (persistence.find(clienteEntity.getId()) == null) {
             throw new BusinessLogicException("El id del cliente no esta registrado.");

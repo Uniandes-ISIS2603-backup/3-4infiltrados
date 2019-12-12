@@ -52,10 +52,23 @@ public class ClienteResource {
     
     @GET
     public List<ClienteDetailDTO> getClientes() {
-        LOGGER.info("ClienteResource getCliente: input: void");
+        LOGGER.info("ClienteResource getClientes: input: void");
         List<ClienteDetailDTO> listaClientes = listEntity2DTO(clienteLogic.getClientes());
         LOGGER.log(Level.INFO, "ClienteResource getClientes: output: {0}", listaClientes);
         return listaClientes;
+    }
+    
+    @GET
+    @Path("{clientesId: \\d+}")
+    public ClienteDetailDTO getCliente(@PathParam("clientesId") Long clientesId) {
+        LOGGER.info("ClienteResource getCliente: input: void");
+        ClienteEntity clienteEntity = clienteLogic.getCliente(clientesId);
+        if (clienteEntity == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
+        }
+        ClienteDetailDTO cliente = new ClienteDetailDTO(clienteEntity);
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", cliente);
+        return cliente;
     }
     
     @PUT
