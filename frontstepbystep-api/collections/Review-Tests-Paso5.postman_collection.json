@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "e8f2ca25-a181-4d3e-85c8-2f39bf439b24",
+		"_postman_id": "329f01ec-19f4-4ee1-a58b-b446a8e65097",
 		"name": "Review Tests",
 		"description": "Colección de pruebas sobre el recurso Review",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "f86c5fcf-6b12-410e-b3a3-86153083a51c",
 			"name": "Crear una editorial",
 			"event": [
 				{
@@ -52,19 +51,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "bf8d55cf-e689-428b-8c13-670c7b79490c",
 			"name": "Crear un libro",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "304084ed-d326-4e9b-b66a-8c2c95b18e0b",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -73,12 +71,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":50000,\n    \"inventario\":10,\n    \"vendidos\":2,\n    \"descuento\":0.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -98,7 +103,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "e0e45b83-6df3-4dbc-891f-04f3a3faaa24",
 			"name": "Crearle una reseña a un libro",
 			"event": [
 				{
@@ -145,7 +149,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c8fc105d-01cb-4bb2-9fcc-59524f26b462",
 			"name": "Crearle una reseña 2 a un libro",
 			"event": [
 				{
@@ -193,7 +196,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "79d5b958-edb7-4dba-8e85-1cd713e5c964",
 			"name": "Crearle una reseña a  un libro que no existe",
 			"event": [
 				{
@@ -240,7 +242,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a56d9b11-7cc0-4840-a1f7-a0d3080eb777",
 			"name": "Obtener las reseñas de un libro",
 			"event": [
 				{
@@ -259,10 +260,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}/reviews",
 					"protocol": "http",
@@ -283,7 +280,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ac845e09-6896-4cc1-8ad7-29a0ae3201c7",
 			"name": "Obtener una reseña de un libro",
 			"event": [
 				{
@@ -302,10 +298,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books/{{new_id_b}}/reviews/{{new_id_r}}",
 					"protocol": "http",
@@ -327,7 +319,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "9396a15a-a3e4-4ecf-b96c-268da39eece0",
 			"name": "Editarle una reseña a un libro",
 			"event": [
 				{
@@ -376,7 +367,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "d468ab36-985a-414f-a7ce-3f447d2309f5",
 			"name": "Editarle una reseña que no existe a un libro",
 			"event": [
 				{
@@ -425,7 +415,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "dc4459fb-d62d-46de-a831-3e1a302689f7",
 			"name": "Editarle una reseña a un libro que no existe",
 			"event": [
 				{
@@ -473,7 +462,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "48f78c2b-52c0-48e7-8da6-c4ee3ffc48cd",
 			"name": "Borrarle una reseña que no existe en un libro",
 			"event": [
 				{
@@ -517,7 +505,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "e70c7e9e-b456-4640-9c87-a771f663b194",
 			"name": "Borrarle una reseña un libro que no existe",
 			"event": [
 				{
@@ -560,7 +547,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "e9edce7c-28ae-41d1-93d0-4e9f72cc4705",
 			"name": "Borrarle una reseña a un libro",
 			"event": [
 				{
@@ -602,7 +588,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "111761a6-5585-42af-bba6-5ecccf2fef64",
 			"name": "Borrarle una reseña 2 a un libro",
 			"event": [
 				{
@@ -644,7 +629,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a82791bc-dc49-4599-8546-c4725477167f",
 			"name": "Borrar un libro",
 			"event": [
 				{
@@ -684,7 +668,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "6bcf86ee-1023-4a2b-a467-433c53f937f7",
 			"name": "Borrar una editorial",
 			"event": [
 				{
@@ -745,5 +728,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

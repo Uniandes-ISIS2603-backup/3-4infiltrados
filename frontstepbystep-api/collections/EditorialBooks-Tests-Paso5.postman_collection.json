@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "47ffe557-f548-4a92-9f34-7ed03a7af7bb",
+		"_postman_id": "fa57ff7f-ebdc-409b-8e21-6ee1d9b643b5",
 		"name": "EditorialBooks Tests",
 		"description": "Colección de pruebas sobre el recurso EditorialBooks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "5e77ad1b-779c-41eb-880c-7becfa4a42b7",
 			"name": "Crear una editorial",
 			"event": [
 				{
@@ -52,7 +51,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "61b70354-9328-4339-85d8-eafe2e6b387c",
 			"name": "Crear una editorial 2",
 			"event": [
 				{
@@ -100,19 +98,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c8034ecb-a237-493d-80a5-1edf2a918d2e",
 			"name": "Crear un libro",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "304084ed-d326-4e9b-b66a-8c2c95b18e0b",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -121,12 +118,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-8\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 2\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":50000,\n    \"inventario\":5,\n    \"vendidos\":3,\n    \"descuento\":0.25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -146,19 +150,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "f14992b7-341d-4db2-9aef-bb37d3f5ff3d",
 			"name": "Crear un libro 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "ceefa0d0-e6b0-4457-bf73-209c199fd164",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_b2\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -167,12 +170,19 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-81\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 3\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n    \"description\": \"Jorge Fondebrider traza un mundo fantastico con mapas de la geografia real y de sus mitologias, observando a los hombres lobo que han vivido en la imaginacion de Europa y America.\",\n    \"image\": \"https://static.iris.net.co/arcadia/upload/images/2017/7/31/64899_1.jpg\",\n    \"isbn\": \"930330149-81\",\n    \"editorial\": { \"id\": {{new_id_e}} },\n    \"name\": \"Historia de los hombres lobo 3\",\n    \"publishingdate\": \"2000-08-20T00:00:00-05:00\",\n    \"costo\":45000,\n    \"inventario\":6,\n    \"vendidos\":7,\n    \"descuento\":0.3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/books",
@@ -192,7 +202,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2694a707-97db-4e33-8afe-e1377cca1e79",
 			"name": "Agregar un libro a una editorial",
 			"event": [
 				{
@@ -240,7 +249,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a4327099-473d-4035-bddf-b2c2256e4408",
 			"name": "Agregar un libro que no existe a una editorial",
 			"event": [
 				{
@@ -288,7 +296,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "85a746ee-d824-44a0-8ec0-4cec128fad96",
 			"name": "Obtener los libros de una editorial",
 			"event": [
 				{
@@ -307,10 +314,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials/{{new_id_e2}}/books",
 					"protocol": "http",
@@ -331,7 +334,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "1a49e627-356f-4f56-a799-77d6a53e1a3a",
 			"name": "Obtener un libro de una editorial",
 			"event": [
 				{
@@ -350,10 +352,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials/{{new_id_e2}}/books/{{new_id_b}}",
 					"protocol": "http",
@@ -375,7 +373,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c0814f64-a298-451f-ba0c-1be4aa70df46",
 			"name": "Obtener un libro no asociado de una editorial",
 			"event": [
 				{
@@ -393,10 +390,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials/{{new_id_e}}/books/{{new_id_b}}",
 					"protocol": "http",
@@ -418,7 +411,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "bf49f394-b795-4f49-b4ff-8bded1b19d9c",
 			"name": "Obtener un libro que no existe de una editorial",
 			"event": [
 				{
@@ -435,10 +427,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep-api/api/editorials/{{new_id_e}}/books/0",
 					"protocol": "http",
@@ -460,7 +448,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2e1358b4-83e2-4453-b35a-5e4292491fb6",
 			"name": "Asociar libros a una editorial",
 			"event": [
 				{
@@ -508,7 +495,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "bc68bb39-8865-42f4-83db-ecc53e47b210",
 			"name": "Asociar libros que no existen a una editorial",
 			"event": [
 				{
@@ -555,7 +541,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ed37735f-ccac-4c3a-b616-a8464b299005",
 			"name": "Borrar un libro",
 			"event": [
 				{
@@ -595,7 +580,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c21d8573-8b48-4f72-a858-3621eded936e",
 			"name": "Borrar un libro 2",
 			"event": [
 				{
@@ -635,7 +619,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "efc354b6-0c38-4912-9f89-5509fe1bcba4",
 			"name": "Borrar una editorial",
 			"event": [
 				{
@@ -674,7 +657,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "d0569134-182b-4e4c-8754-2bb7ca62c418",
 			"name": "Borrar una editorial 2",
 			"event": [
 				{
@@ -735,5 +717,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
